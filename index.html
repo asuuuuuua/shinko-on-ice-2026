@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="2026年12月13日（日）尼崎スポーツの森にて開催。CAMPFIREの招待券付きリターンでご観覧いただけます。">
+  <meta name="theme-color" content="#061429">
+  <!-- ファビコン：ロゴの雪の結晶（青=左／ピンク=右）から作成。ファイルは index.html と同じ階層に置く -->
+  <link rel="icon" href="favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <!-- OGP：LINE・Instagramなどでリンクが共有されたときの表示。
+       og:url と og:image のドメインは、取得したドメイン（sinko-on-ice.com）に設定済み。
+       ドメインを変える場合は、この2行だけ書き換える。画像は絶対URLでないと読み込まれない。 -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Shinko on Ice 2026">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:title" content="Shinko on Ice 2026｜甲南大学 × 神戸大学 アイスショー">
+  <meta property="og:description" content="2026年12月13日（日）尼崎スポーツの森にて開催。CAMPFIREの招待券付きリターンでご観覧いただけます。">
+  <meta property="og:url" content="https://sinko-on-ice.com/">
+  <meta property="og:image" content="https://sinko-on-ice.com/ogp.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Shinko on Ice 2026｜甲南大学 × 神戸大学｜2026年12月13日（日）尼崎スポーツの森">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Shinko on Ice 2026｜甲南大学 × 神戸大学 アイスショー</title>
+  <!-- オープニング：開くたびに毎回流す。動きを減らす設定の人には出さない。
+       描画前に判定する必要があるのでここに置く -->
+  <script>try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('intro');}}catch(e){}</script>
+  <style>
+    /* 色・文字サイズはデジタル庁デザインシステム（DADS）の基準に合わせて調整:
+       本文/UIは16px以上、付随情報は14pxまで、テキストは大小問わず背景とのコントラスト比4.5:1以上。 */
+    :root { --ink:#08192f; --ice:#dbeefa; --pink:#b81459; --wine:#7e123c; --gold:#c8a66a; --paper:#fbfcff; --line:rgba(8,25,47,.14); --muted:#5a6a7d; --ig:#f7bdd0; --ig-line:rgba(247,189,208,.6);
+      /* v2（プレミアム版）の配色。CAST & PROGRAM と TICKET の2セクションで使う */
+      --v2-paper:#efeadf; --v2-ink:#141c26; --v2-ink-soft:#4e5861; --v2-ink-line:rgba(20,28,38,.16);
+      --v2-deep:#131d27; --v2-cream:#efe9dd; --v2-cream-soft:#c3bcae;
+      --v2-gold:#7f642b; --v2-gold-light:#d8c494; --v2-line-dark:rgba(216,196,148,.3); }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:var(--paper); font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif; font-size:16px; line-height:1.8; letter-spacing:.02em; }
+    .sr-only { position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+    a { color:inherit; text-decoration:none; }
+    img { max-width:100%; display:block; }
+    .wrap { width:min(1120px, calc(100% - 48px)); margin:auto; }
+    .eyebrow { margin:0 0 10px; color:var(--pink); font-family:Georgia,serif; font-size:14px; font-weight:bold; letter-spacing:.2em; }
+    .title { margin:0; font-family:Georgia,"Times New Roman",serif; font-size:clamp(32px,5vw,56px); line-height:1.3; letter-spacing:.03em; }
+    .section { padding:120px 0; }
+    /* 全セクション同じ余白だと機械的に見えるので、役割ごとにリズムを変える */
+    .section.about { padding:150px 0 130px; }
+    .section.access { padding:96px 0; }
+    .section.faq { padding:112px 0 130px; }
+    .button { display:inline-flex; min-height:56px; align-items:center; justify-content:center; gap:12px; padding:14px 26px; border:1px solid transparent; font-weight:700; letter-spacing:.05em; transition:.2s; }
+    .button:hover { transform:translateY(-2px); }
+    .button--primary { color:white; background:var(--wine); box-shadow:0 10px 22px rgba(79,5,34,.22); }
+    .button--light { color:white; border-color:rgba(255,255,255,.65); }
+    .button--outline { border-color:var(--ink); }
+    .notice { margin:0; color:var(--muted); font-size:14px; }
+    /* ヘッダーは固定。ヒーロー上では透明、スクロールしたら濃紺の帯に切り替えて可読性を確保する */
+    header { position:fixed; z-index:10; width:100%; color:white; transition:background .3s ease,box-shadow .3s ease; }
+    header.is-stuck { background:rgba(7,20,38,.95); box-shadow:0 1px 0 rgba(255,255,255,.14); backdrop-filter:blur(10px); }
+    .header-inner { display:flex; height:86px; align-items:center; justify-content:space-between; transition:height .3s ease; }
+    header.is-stuck .header-inner { height:68px; }
+    /* 固定ヘッダーの下に見出しが潜らないようにする */
+    section[id],a[id] { scroll-margin-top:88px; }
+    .header-logo { width:140px; height:42px; object-fit:contain; object-position:left center; filter:brightness(0) invert(1); }
+    .header-actions { display:flex; gap:16px; align-items:center; }
+    .header-actions .button { min-height:44px; padding:11px 16px; font-size:14px; }
+    .header-inner > a { display:inline-flex; min-height:44px; align-items:center; }
+    .ig-icon { display:inline-flex; width:18px; height:18px; flex:none; }
+    .ig-icon svg { width:100%; height:100%; }
+    /* Instagramは外部チャネルなので、濃い背景の上ではピンク系で色分けする */
+    .header-ig { display:inline-flex; width:44px; min-height:44px; flex:none; align-items:center; justify-content:center; color:var(--ig); border:1px solid var(--ig-line); transition:.2s; }
+    .header-ig:hover { background:rgba(247,189,208,.18); }
+    .site-menu__ig { display:flex; min-height:54px; align-items:center; justify-content:center; gap:11px; margin-top:14px; color:var(--ig); border:1px solid var(--ig-line); font-size:16px; font-weight:700; letter-spacing:.06em; }
+    .site-menu__ig .ig-icon { width:20px; height:20px; }
+    .site-menu__note { margin:34px 0 0; color:#e7eef6; font-size:16px; line-height:1.8; text-align:center; }
+    .site-menu__note + .site-menu__ig { margin-top:14px; }
+    header nav a:not(.button) { display:inline-flex; min-width:44px; min-height:44px; align-items:center; justify-content:center; margin-right:10px; padding:0 6px; font:700 14px/1 Georgia,serif; letter-spacing:.1em; }
+    header nav a:not(.button):hover { color:#f7bdd0; }
+    .menu-toggle { display:inline-flex; min-height:44px; align-items:center; gap:10px; padding:7px 0 7px 12px; color:white; border:0; background:transparent; cursor:pointer; font:700 14px/1 Georgia,serif; letter-spacing:.12em; }
+    .menu-toggle__icon { display:grid; width:23px; gap:5px; }
+    .menu-toggle__icon span { display:block; height:1px; background:currentColor; transition:transform .25s ease,opacity .25s ease; }
+    .menu-toggle[aria-expanded="true"] .menu-toggle__icon span:nth-child(1) { transform:translateY(6px) rotate(45deg); }
+    .menu-toggle[aria-expanded="true"] .menu-toggle__icon span:nth-child(2) { opacity:0; }
+    .menu-toggle[aria-expanded="true"] .menu-toggle__icon span:nth-child(3) { transform:translateY(-6px) rotate(-45deg); }
+    .site-menu { position:fixed; z-index:8; top:0; right:0; display:flex; width:min(480px,100%); height:100dvh; flex-direction:column; padding:126px clamp(28px,6vw,72px) 42px; color:white; background:linear-gradient(145deg,#07172e,#171229 70%,#4d0b32); box-shadow:-20px 0 50px rgba(1,8,20,.35); transform:translateX(105%); transition:transform .35s cubic-bezier(.22,.72,.2,1); visibility:hidden; }
+    .site-menu.is-open { transform:translateX(0); visibility:visible; }
+    /* 画面が低い端末（Safariのバーで縦が狭いとき）でも、下のInstagramまでスクロールで届くようにする */
+    .site-menu { overflow-y:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch; padding-bottom:calc(42px + env(safe-area-inset-bottom,0px)); }
+    .site-menu > * { flex-shrink:0; }
+    @media (max-height:760px) {
+      .site-menu { padding-top:92px; }
+      .site-menu li a { min-height:50px; }
+      .site-menu .button { margin-top:22px; }
+      .site-menu__note { margin-top:22px !important; }
+    }
+    .site-menu__label { margin:0 0 22px; color:#bce8ff; font:700 14px/1 Georgia,serif; letter-spacing:.2em; }
+    .site-menu ul { display:grid; margin:0; padding:0; border-top:1px solid rgba(255,255,255,.35); list-style:none; }
+    .site-menu li { border-bottom:1px solid rgba(255,255,255,.25); }
+    .site-menu li a { display:flex; min-height:58px; align-items:center; justify-content:space-between; font-size:17px; font-weight:700; }
+    .site-menu li a::after { color:#f7bdd0; content:"→"; }
+    .site-menu .button { align-self:stretch; margin-top:30px; }
+    .menu-backdrop { position:fixed; z-index:7; inset:0; background:rgba(3,11,24,.56); opacity:0; pointer-events:none; transition:opacity .28s ease; }
+    .menu-backdrop.is-open { opacity:1; pointer-events:auto; }
+    /* DADS のフォーカスインジケーターは Yellow-300 + Black の二重構造（変更不可）。
+       正式なトークン値はDADSから取得して差し替えてください。 */
+    a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid #f2c200; outline-offset:0; box-shadow:0 0 0 6px #0b0b0b; }
+    .skip-link { position:absolute; z-index:20; top:8px; left:8px; padding:10px 14px; color:#07172e; background:white; transform:translateY(-160%); }
+    .skip-link:focus { transform:translateY(0); }
+    body.menu-open { overflow:hidden; }
+    /* PCは従来どおり集合写真。キービジュアルはスマホのみで使う */
+    .hero { position:relative; overflow:hidden; min-height:750px; color:white; background:radial-gradient(circle at 22% 22%,#2d79b6 0,transparent 25%),radial-gradient(circle at 79% 18%,#9c1452 0,transparent 29%),linear-gradient(140deg,#061429 10%,#102a50 55%,#190c2a 100%); }
+    .hero::before { position:absolute; inset:0; background:linear-gradient(90deg,rgba(3,14,30,.72),rgba(3,14,30,.25)),url('cast.webp') center/cover; opacity:.28; content:""; mix-blend-mode:screen; }
+    .hero::after { position:absolute; inset:0; pointer-events:none; background:linear-gradient(90deg,rgba(0,12,28,.22),transparent 48%,rgba(77,5,47,.16)); content:""; }
+    .snow { position:absolute; z-index:1; inset:0; overflow:hidden; pointer-events:none; }
+    .snow i { position:absolute; top:-12px; width:var(--size); height:var(--size); border-radius:50%; background:rgba(255,255,255,.85); box-shadow:0 0 9px rgba(203,239,255,.7); opacity:var(--opacity); animation:snowfall var(--duration) linear var(--delay) infinite; }
+    .snow i:nth-child(1){left:7%;--size:4px;--opacity:.82;--duration:10s;--delay:-7s}.snow i:nth-child(2){left:11%;--size:2px;--opacity:.62;--duration:15s;--delay:-12s}.snow i:nth-child(3){left:26%;--size:5px;--opacity:.9;--duration:13s;--delay:-3s}.snow i:nth-child(4){left:31%;--size:3px;--opacity:.58;--duration:18s;--delay:-14s}.snow i:nth-child(5){left:39%;--size:4px;--opacity:.8;--duration:11s;--delay:-9s}.snow i:nth-child(6){left:53%;--size:2px;--opacity:.7;--duration:16s;--delay:-5s}.snow i:nth-child(7){left:61%;--size:5px;--opacity:.86;--duration:14s;--delay:-10s}.snow i:nth-child(8){left:72%;--size:3px;--opacity:.65;--duration:19s;--delay:-17s}.snow i:nth-child(9){left:88%;--size:4px;--opacity:.78;--duration:12s;--delay:-2s}.snow i:nth-child(10){left:95%;--size:2px;--opacity:.58;--duration:17s;--delay:-13s}
+    @keyframes snowfall { from { transform:translate3d(0,-20px,0); } to { transform:translate3d(48px,790px,0); } }
+    @media (prefers-reduced-motion:reduce) { .snow i { animation:none; } html { scroll-behavior:auto; } .button:hover { transform:none; } }
+    .hero-inner { position:relative; z-index:1; display:grid; grid-template-columns:1.1fr .9fr; align-items:center; gap:8%; min-height:750px; padding:130px 0 72px; }
+    .hero-logo-wrap { width:min(600px,100%); margin:auto; }
+    .hero-logo { position:relative; z-index:1; width:100%; filter:drop-shadow(0 20px 30px rgba(0,0,0,.25)); }
+    .hero-copy { border-left:1px solid rgba(255,255,255,.45); padding-left:42px; }
+    .hero-copy h1 { margin:0 0 28px; font-family:Georgia,serif; font-size:clamp(24px,3.2vw,42px); font-weight:normal; line-height:1.42; letter-spacing:.06em; }
+    .hero-data { display:grid; grid-template-columns:1fr; gap:15px; padding:22px 0; border-top:1px solid rgba(255,255,255,.5); border-bottom:1px solid rgba(255,255,255,.5); }
+    .hero-data div { display:grid; grid-template-columns:74px 1fr; align-items:baseline; gap:12px; }
+    .hero-data small { color:#bce8ff; font:700 14px/1 Georgia,serif; letter-spacing:.18em; }
+    .hero-data strong { font-size:clamp(17px,2vw,23px); letter-spacing:.04em; }
+    .hero-actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:28px; }
+    .scroll { position:absolute; z-index:1; bottom:30px; left:50%; color:#d9efff; font:14px Georgia,serif; letter-spacing:.18em; transform:translateX(-50%); }
+    .scroll::after { display:block; width:1px; height:34px; margin:8px auto 0; background:#d9efff; content:""; }
+    .about { position:relative; overflow:hidden; background:#f2f8fd; }
+    .about::before { position:absolute; top:-18%; right:-8%; width:54vw; height:54vw; border:1px solid rgba(48,141,205,.15); border-radius:50%; content:""; }
+    .about-grid { position:relative; display:grid; grid-template-columns:1.08fr .92fr; gap:10%; align-items:center; }
+    /* 2枚は重ねず、上下に離して配置する（×マークがキャプションに被らないように） */
+    .team-cross { position:relative; display:grid; gap:clamp(80px,7vw,104px); }
+    /* 写真は元画像と同じ3:2で置き、左右を切らずに見せる */
+    .team-shot { position:relative; width:74%; margin:0; overflow:hidden; border:7px solid #f2f8fd; box-shadow:0 15px 34px rgba(8,25,47,.18); }
+    .team-shot img { width:100%; aspect-ratio:3/2; object-fit:cover; }
+    .team-shot figcaption { position:absolute; right:0; bottom:0; padding:8px 13px; color:white; background:rgba(8,25,47,.92); font-size:14px; font-weight:bold; letter-spacing:.08em; }
+    .team-shot--konan { justify-self:start; transform:rotate(-3deg); }
+    .team-shot--kobe { justify-self:end; transform:rotate(3deg); }
+    /* 2枚の写真を結ぶ金の×。丸い下地は置かず、太い2本の棒を交差させる */
+    .team-cross-mark { position:absolute; z-index:2; top:50%; left:50%; width:92px; height:92px; color:transparent; font-size:0; filter:drop-shadow(0 3px 6px rgba(8,25,47,.18)); transform:translate(-50%,-50%); }
+    .team-cross-mark::before,.team-cross-mark::after { position:absolute; top:50%; left:0; width:100%; height:8px; margin-top:-4px; border-radius:6px; background:linear-gradient(90deg,#a89d86,#cdc5b2 50%,#a89d86); content:""; }
+    .team-cross-mark::before { transform:rotate(45deg); }
+    .team-cross-mark::after { transform:rotate(-45deg); }
+    .about-text p:not(.eyebrow) { margin:28px 0 0; font-size:16px; }
+    /* ABOUTは「扉」扱い: ラベルを置かず、見出しとリードで立ち上げる */
+    .about-title { font-size:clamp(32px,4.4vw,54px); }
+    .about-text p.about-lead { font-size:19px; line-height:1.9; }
+    .program { color:#f6f8ff; background:linear-gradient(140deg,#07172e,#102e55); }
+    .program .eyebrow { color:#f5bdc9; }
+    /* PROGRAMは写真を主役に: ラベルと見出しを横に組み、写真は画面幅いっぱいへ */
+    .program-head { display:grid; grid-template-columns:200px minmax(0,1fr); gap:0 44px; align-items:start; }
+    .program-head .eyebrow { margin:15px 0 0; }
+    .cast-lead { max-width:550px; margin:20px 0 0; color:#d6e7f6; }
+    .cast-photo { position:relative; aspect-ratio:16/7; overflow:hidden; }
+    /* 集合写真は左右いっぱいまで人が写っているので、元画像と同じ比率で全員を見せる */
+    .cast-photo.cast-photo--bleed { aspect-ratio:1400/831; width:min(100%,1400px); margin:54px auto 0; }
+    .cast-photo::after { position:absolute; inset:0; background:linear-gradient(90deg,rgba(4,18,38,.14),rgba(111,10,57,.2)); content:""; }
+    .cast-photo img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 42%; }
+    .cast-caption { display:block; margin-top:14px; color:#c8dcf2; font-size:14px; }
+    .cast-details { display:grid; grid-template-columns:1.1fr .9fr; gap:68px; margin-top:62px; }
+    .cast-category { padding-top:20px; border-top:1px solid rgba(255,255,255,.5); }
+    .cast-category + .cast-category { margin-top:42px; }
+    .cast-category h3 { margin:0 0 18px; color:#f7bdd0; font:700 14px/1 Georgia,serif; letter-spacing:.2em; }
+    /* 項目ごとの区切り線は引かず、余白と記号で並びを示す */
+    .guest-names { display:grid; grid-template-columns:1fr; gap:14px; margin:0; }
+    .guest-names span { font-size:clamp(23px,2.5vw,33px); font-weight:700; line-height:1.35; letter-spacing:.08em; }
+    .cast-list { display:grid; gap:9px; margin:0; padding:0; list-style:none; }
+    .cast-list li { font-size:17px; }
+    .program-list { display:grid; grid-template-columns:1fr; gap:11px; margin:0; padding:0; list-style:none; }
+    .program-list li { position:relative; padding-left:22px; font-size:17px; }
+    .program-list li::before { position:absolute; top:.85em; left:0; width:11px; height:1px; background:#f7bdd0; content:""; }
+    .ticket { background:linear-gradient(180deg,#fff,#f4f8fc); }
+    .ticket-lead { max-width:650px; margin:25px 0 38px; }
+    .steps { max-width:1060px; border-top:1px solid var(--line); counter-reset:step; }
+    .step { display:grid; grid-template-columns:100px minmax(240px,1.05fr) minmax(260px,1fr); gap:24px; align-items:start; min-height:0; padding:29px 0; border:0; border-bottom:1px solid var(--line); background:transparent; }
+    .step::before { grid-row:1 / span 2; padding-top:4px; color:var(--pink); font:14px Georgia,serif; letter-spacing:.15em; counter-increment:step; content:"STEP 0" counter(step); }
+    .step h3 { margin:0; font-size:18px; line-height:1.5; }
+    .step p { margin:0; color:#536479; font-size:16px; }
+    .ticket-bottom { max-width:1060px; margin-top:42px; }
+    .information { padding:24px 0; border-top:1px solid var(--ink); border-bottom:1px solid var(--line); font-size:16px; }
+    .information h3 { margin:0 0 12px; font-size:17px; }
+    .information ul { display:grid; grid-template-columns:repeat(3,1fr); gap:12px 26px; margin:0; padding:0; list-style:none; }
+    .information li { position:relative; padding-left:14px; }.information li::before { position:absolute; left:0; color:var(--pink); content:"•"; }
+    .ticket-cta { display:flex; justify-content:center; margin:38px 0 0; }.ticket-cta .button { min-width:min(100%,430px); }
+    .support { display:grid; grid-template-columns:1fr auto; gap:24px; align-items:center; margin-top:56px; padding:28px 0; color:var(--ink); border-top:1px solid var(--line); }
+    .support h3 { margin:0 0 7px; font-size:18px; }.support p { margin:0; color:#536479; font-size:16px; }
+    .support .button { align-self:center; min-height:46px; padding:11px 18px; border-color:var(--ink); font-size:16px; }
+    .access { background:#f7f5f1; }
+    /* ACCESSは実務情報として静かに: 英字ラベルではなく和文の小見出し、タイトルも一段落とす */
+    .access-kicker { margin:0 0 7px; color:var(--muted); font-size:14px; font-weight:700; letter-spacing:.06em; }
+    .access-title { font-size:clamp(27px,3.4vw,40px); }
+    .access-grid { display:grid; grid-template-columns:1fr 1fr; gap:10%; align-items:start; }
+    .map { display:flex; min-height:350px; align-items:center; justify-content:center; border:1px solid #c5c0b8; color:#6b655c; background:linear-gradient(45deg,transparent 49%,#dedbd5 50%,transparent 51%),linear-gradient(-45deg,transparent 49%,#dedbd5 50%,transparent 51%),#ebe8e1; font-family:Georgia,serif; letter-spacing:.15em; text-align:center; }
+    .map { position:relative; overflow:hidden; }
+    .map--link { text-decoration:none; }
+    .map__sub { font-family:sans-serif; font-size:16px; letter-spacing:.04em; border-bottom:1px solid currentColor; }
+    .map iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+    .access-info { margin-top:20px; }
+    .access-info p { margin:0 0 22px; font-size:16px; }
+    .access-info dl { margin:0; border-top:1px solid var(--line); }
+    .access-info dl div { padding:16px 0; border-bottom:1px solid var(--line); }
+    dt { font-weight:bold; } dd { margin:3px 0 0; color:#536479; font-size:16px; word-break:auto-phrase; text-wrap:pretty; }
+    .faq { background:white; }
+    .faq-head { display:flex; align-items:end; justify-content:space-between; gap:30px; margin-bottom:45px; }
+    .faq-head p { max-width:370px; margin:0; font-size:16px; }
+    details { border-top:1px solid var(--line); }
+    details:last-child { border-bottom:1px solid var(--line); }
+    summary { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:20px 0; cursor:pointer; font-weight:bold; list-style:none; }
+    summary::-webkit-details-marker { display:none; }
+    /* ＋ の縦棒が縮んで − になる。content の差し替えでは動かせないので背景で描く */
+    summary::after { content:""; width:16px; height:16px; flex:none; background-image:linear-gradient(var(--pink),var(--pink)),linear-gradient(var(--pink),var(--pink)); background-position:center,center; background-repeat:no-repeat; background-size:16px 2px,2px 16px;  }
+    details[open] summary::after { background-size:16px 2px,2px 0; transform:rotate(180deg); }
+    .faq-body { overflow:hidden; }
+    details p { max-width:850px; margin:0; padding:0 0 22px; color:#526176; font-size:16px; }
+    .instagram { padding:93px 0; color:white; text-align:center; background:radial-gradient(ellipse 62% 74% at 13% 24%,#1a5686,transparent 64%),radial-gradient(ellipse 50% 86% at 88% 81%,#a81253,transparent 58%),#08192f; }
+    .instagram h2 { margin:10px 0 16px; font-family:Georgia,serif; font-size:clamp(29px,4vw,47px); font-weight:normal; line-height:1.35; }
+    .instagram p { max-width:530px; margin:0 auto 26px; font-size:16px; }
+    footer { padding:34px 0 92px; color:#a8bed4; background:#041021; text-align:center; font-size:14px; }
+    footer img { width:166px; margin:0 auto 14px; filter:brightness(0) invert(1); opacity:.9; }
+    .footer-host { margin:0 auto; text-align:center; line-height:1.9; }
+    .footer-host__label { letter-spacing:.3em; text-indent:.3em; }
+    .footer-ig { margin:0 0 18px; }
+    .footer-ig a { display:inline-flex; min-height:44px; align-items:center; gap:9px; padding:10px 18px; color:var(--ig); border:1px solid var(--ig-line); font-size:14px; font-weight:700; letter-spacing:.05em; transition:.2s; }
+    .footer-ig a:hover { background:rgba(247,189,208,.14); }
+    .instagram .button { color:var(--ig); border-color:var(--ig-line); }
+    .mobile-cta { display:none; }
+    /* ───── オープニングの構成要素（v3の演出を踏襲）─────
+       ロゴ背後の光／金の細い線／結晶のきらめき／ロゴ表面を走る光。
+       .intro が付いているときだけ出る。消すのはJS（2.7秒後 or 操作）。 */
+    .hero-logo-wrap { position:relative; }
+    .hero-logo-wrap::before { position:absolute; top:50%; left:50%; z-index:0; width:115%; aspect-ratio:2/1; border-radius:50%; background:radial-gradient(ellipse at center,rgba(255,255,255,.92) 0,rgba(226,242,255,.7) 32%,rgba(190,225,255,.22) 58%,transparent 72%); transform:translate(-50%,-50%); opacity:0; content:""; }
+    .intro-line,.intro-spark,.hero-shine { display:none; }
+    .intro .intro-line,.intro .intro-spark,.intro .hero-shine { display:block; }
+    .intro-line { position:absolute; top:50%; left:50%; z-index:2; width:min(420px,80%); height:1px; background:linear-gradient(90deg,transparent,#e9d3a1 20%,#fff6df 50%,#e9d3a1 80%,transparent); transform:translate(-50%,-50%) scaleX(0); opacity:0; pointer-events:none; }
+    .intro-spark { position:absolute; top:50%; left:50%; z-index:3; width:46px; height:46px; margin:-23px 0 0 -23px; background:radial-gradient(circle,#fff 0 6%,rgba(255,255,255,0) 7%),conic-gradient(from 0deg,transparent 0 10deg,#fff 12deg,transparent 14deg 100deg,#fff 102deg,transparent 104deg 190deg,#fff 192deg,transparent 194deg 280deg,#fff 282deg,transparent 284deg); border-radius:50%; filter:drop-shadow(0 0 8px #fff) drop-shadow(0 0 18px #bfe6ff); opacity:0; pointer-events:none; }
+    .hero-shine { position:absolute; inset:0; z-index:2; pointer-events:none; background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.95) 50%,transparent 58%) no-repeat; background-size:250% 100%; background-position:160% 0; -webkit-mask:var(--logo-mask) center/contain no-repeat; mask:var(--logo-mask) center/contain no-repeat; mix-blend-mode:screen; }
+    /* ナビの現在地。スクロール位置に応じて該当セクションに下線が伸びる */
+    header nav a:not(.button) { position:relative; }
+    header nav a:not(.button)::after { position:absolute; right:6px; bottom:11px; left:6px; height:2px; background:#f7bdd0; content:""; transform:scaleX(0); transform-origin:left center; transition:transform .3s cubic-bezier(.22,.72,.2,1); }
+    header nav a.is-current::after { transform:scaleX(1); }
+    .button .arw { display:inline-block; transition:transform .25s cubic-bezier(.22,.72,.2,1); }
+    /* ───── v2の配色を CAST & PROGRAM / TICKET に適用 ─────
+       藍のグラデーションは単色に、ピンクは金に置き換える。
+       文字サイズ・余白・組み方はv1のまま。 */
+    .program { color:var(--v2-cream); background:var(--v2-deep); }
+    .program .eyebrow { color:var(--v2-gold-light); }
+    .cast-lead,.cast-caption { color:var(--v2-cream-soft); }
+    .cast-category { border-top-color:var(--v2-line-dark); }
+    .cast-category h3 { color:var(--v2-gold-light); }
+    .program-list li::before { background:var(--v2-gold-light); }
+    .cast-photo::after { background:linear-gradient(90deg,rgba(11,17,24,.12),rgba(11,17,24,.3)); }
+    .motion-enabled .cast-photo.is-visible::after { background:linear-gradient(90deg,rgba(11,17,24,.04),rgba(11,17,24,.1)); }
+
+    .ticket { color:var(--v2-ink); background:var(--v2-paper); }
+    .ticket .eyebrow { color:var(--v2-gold); }
+    .ticket-lead,.step p,.support p { color:var(--v2-ink-soft); }
+    .steps { border-top-color:var(--v2-ink-line); }
+    .step { border-bottom-color:var(--v2-ink-line); }
+    .step::before { color:var(--v2-gold); }
+    .information { border-top-color:var(--v2-ink); border-bottom-color:var(--v2-ink-line); }
+    .information li::before { color:var(--v2-gold); }
+    .ticket .button--primary { color:var(--v2-cream); background:var(--v2-ink); border-color:var(--v2-ink); box-shadow:none; }
+    .support { color:var(--v2-ink); border-top-color:var(--v2-ink-line); }
+    .support .button--outline { color:var(--v2-ink); border-color:var(--v2-gold); }
+
+    @media (hover:hover) {
+      .ticket .button--primary:hover { color:var(--v2-ink); background:transparent; }
+      .support .button--outline:hover { color:var(--v2-cream); background:var(--v2-ink); border-color:var(--v2-ink); }
+      header nav a:not(.button):hover::after { transform:scaleX(1); }
+      .button:hover .arw { transform:translateX(5px); }
+      .button:hover .arw--down { transform:translateY(4px); }
+      .team-shot img,.cast-photo img { transition:transform .65s cubic-bezier(.22,.72,.2,1); }
+      .team-shot:hover img { transform:scale(1.05); }
+      .cast-photo:hover img { transform:scale(1.025); }
+    }
+    @media (prefers-reduced-motion:no-preference) {
+      /* 線 → きらめき → 光の中からロゴ → ロゴを光が横切る → 情報が順に、の流れ */
+      @keyframes lineDraw { 0% { opacity:0; transform:translate(-50%,-50%) scaleX(0); } 25% { opacity:1; } 55% { opacity:1; transform:translate(-50%,-50%) scaleX(1); } 100% { opacity:0; transform:translate(-50%,-50%) scaleX(1.15); } }
+      @keyframes spark { 0% { opacity:0; transform:scale(.2) rotate(0); } 35% { opacity:1; transform:scale(1.25) rotate(25deg); } 100% { opacity:0; transform:scale(.6) rotate(60deg); } }
+      @keyframes glowIn { 0% { opacity:0; transform:translate(-50%,-50%) scale(.6); } 45% { opacity:1; transform:translate(-50%,-50%) scale(1); } 100% { opacity:0; transform:translate(-50%,-50%) scale(1.06); } }
+      @keyframes logoIn { from { opacity:0; transform:scale(.97); filter:blur(10px) brightness(1.6); } to { opacity:1; transform:none; filter:none; } }
+      @keyframes shine { from { background-position:160% 0; } to { background-position:-60% 0; } }
+      @keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
+      @keyframes borderIn { from { border-left-color:transparent; } }
+      @keyframes fadeIn { from { opacity:0; } }
+      @keyframes logoSettle { from { transform:translateY(var(--intro-shift,0px)); } to { transform:none; } }
+      @keyframes scrollLine { 0% { transform:scaleY(0); transform-origin:top; } 45% { transform:scaleY(1); transform-origin:top; } 55% { transform:scaleY(1); transform-origin:bottom; } 100% { transform:scaleY(0); transform-origin:bottom; } }
+      .intro .intro-line { animation:lineDraw 1.3s cubic-bezier(.65,0,.35,1) .1s both; }
+      .intro .intro-spark { animation:spark 1s ease-out .35s both; }
+      .intro .hero-logo-wrap::before { animation:glowIn 2.2s ease-in-out .5s both; }
+      .intro .hero-logo { animation:logoIn 1.3s cubic-bezier(.2,.7,.2,1) .7s both; }
+      .intro .hero-logo-wrap { animation:logoSettle .9s cubic-bezier(.65,0,.35,1) 1.35s both; }
+      .intro .hero-shine { animation:shine 1s ease-in-out 1.55s both; }
+      .intro .hero-copy { animation:borderIn 1s ease 1.3s both; }
+      .intro .hero-copy > * { animation:fadeUp .8s cubic-bezier(.2,.7,.2,1) both; }
+      .intro .hero-copy > :nth-child(1) { animation-delay:1.4s; }
+      .intro .hero-copy > :nth-child(2) { animation-delay:1.55s; }
+      .intro .hero-copy > :nth-child(3) { animation-delay:1.7s; }
+      .intro header,.intro .scroll,.intro .mobile-cta { animation:fadeIn .9s ease 1.9s both; }
+      .scroll::after { animation:scrollLine 2.4s ease-in-out 2s infinite; }
+    }
+    @media (prefers-reduced-motion:no-preference) {
+      .motion-enabled .reveal { opacity:0; transform:translateY(26px); transition:opacity .8s ease,transform .8s cubic-bezier(.22,.72,.2,1); transition-delay:var(--reveal-delay,0ms); }
+      .motion-enabled .reveal.is-visible { opacity:1; transform:none; }
+      .motion-enabled .team-shot { opacity:0; transition:opacity .75s ease,transform .9s cubic-bezier(.2,.8,.2,1); }
+      .motion-enabled .team-shot--konan { transform:translateX(-120px) rotate(-8deg); }
+      .motion-enabled .team-shot--kobe { transform:translateX(120px) rotate(8deg); transition-delay:120ms; }
+      .motion-enabled .team-cross-mark { opacity:0; transform:translate(-50%,-50%) scale(.35) rotate(-45deg); transition:opacity .4s ease .6s,transform .6s cubic-bezier(.16,1,.3,1) .6s; }
+      .motion-enabled .team-cross.is-visible .team-shot { opacity:1; }
+      .motion-enabled .team-cross.is-visible .team-shot--konan { transform:rotate(-3deg); }
+      .motion-enabled .team-cross.is-visible .team-shot--kobe { transform:rotate(3deg); }
+      .motion-enabled .team-cross.is-visible .team-cross-mark { opacity:1; transform:translate(-50%,-50%) scale(1) rotate(0); }
+      .motion-enabled .cast-photo::after { transition:background .9s ease; }
+      .motion-enabled .cast-photo.is-visible::after { background:linear-gradient(90deg,rgba(4,18,38,.04),rgba(111,10,57,.08)); }
+    }
+    /* PC layout: cinematic whitespace and wider editorial compositions */
+    @media (min-width:761px) {
+      .wrap { width:min(1240px, calc(100% - 96px)); }
+      .section { padding:140px 0; }
+      .section.about { padding:172px 0 148px; }
+      .section.access { padding:104px 0; }
+      .section.faq { padding:124px 0 146px; }
+      .header-inner { height:94px; }
+      header.is-stuck .header-inner { height:72px; }
+      .hero { min-height:820px; }
+      .hero-inner { min-height:820px; grid-template-columns:1.18fr .82fr; gap:7%; padding-top:144px; }
+      .hero-logo-wrap { width:min(665px,100%); }
+      .hero-copy { padding-left:48px; }
+      .hero-copy h1 { margin-bottom:34px; }
+      .hero-data { padding:27px 0; gap:18px; }
+      .about-grid { gap:12%; }
+      .about-text { max-width:560px; }
+      .team-cross { transform:translateY(18px); }
+      .cast-photo { aspect-ratio:16/7; }
+      .cast-details { grid-template-columns:1.08fr .92fr; }
+      .ticket-lead { font-size:17px; }
+      .step { padding:34px 0; }
+      .access-grid { gap:12%; }
+      .map { min-height:410px; }
+      .menu-toggle { display:none; }
+    }
+    @media (max-width:760px) {
+      /* オープニング中だけ、ロゴを画面の縦中央に置く（終わると定位置へ降りてくる） */
+      .hero { --intro-shift:max(0px,calc(50vh - 76px - 27.5vw)); }
+      @supports (height:1svh) { .hero { --intro-shift:max(0px,calc(50svh - 76px - 27.5vw)); } }
+      .wrap { width:min(100% - 44px,560px); }.section { padding:84px 0; }.title { font-size:35px; }
+      .section.about { padding:96px 0 82px; }.section.access { padding:70px 0; }.section.faq { padding:78px 0 90px; }
+      .about-title { font-size:34px; }.about-text p.about-lead { font-size:17px; }.access-title { font-size:27px; }
+      .program-head { grid-template-columns:1fr; gap:0; }.program-head .eyebrow { margin:0 0 10px; }
+      .cast-photo.cast-photo--bleed { margin-top:28px; }
+      /* スマホは画面が狭いので、下方向スクロール中はヘッダーを退避させる */
+      header { transition:background .3s ease,box-shadow .3s ease,transform .3s ease; }
+      header.is-hidden { transform:translateY(-100%); }
+      body.menu-open header { transform:none; }
+      .header-inner { height:68px; }header.is-stuck .header-inner { height:58px; }.header-logo { width:115px; } header nav { display:none; }
+      section[id],a[id] { scroll-margin-top:64px; }
+      /* キービジュアルが縦長なので、スマホではほぼ切らずに全体が入る。
+         明るさは差し替え前と同じ水準に抑える */
+      .hero::before { background:url('hero-key.webp') center center/cover; opacity:.55; mix-blend-mode:normal; -webkit-mask-image:none; mask-image:none; }
+      /* キービジュアルは地が明るいので、均一の暗幕を重ねて差し替え前と同じ暗さにする */
+      .hero::after { background:linear-gradient(rgba(6,16,33,.56),rgba(6,16,33,.56)),linear-gradient(90deg,rgba(0,12,28,.22),transparent 48%,rgba(77,5,47,.16)); }
+      .hero { min-height:780px; }.hero-inner { display:block; min-height:780px; padding:76px 0 66px; }.hero-logo-wrap { width:110vw; max-width:none; margin-left:calc(50% - 55vw); }.hero-copy { margin-top:88px; padding-left:15px; }.hero-copy h1 { margin-bottom:14px; font-size:19px; }.hero-data { padding:13px 0; gap:10px; }.hero-data div { grid-template-columns:58px 1fr; gap:10px; }.hero-data small { font-size:13px; }.hero-data strong { font-size:15px; }.hero-actions { display:grid; grid-template-columns:1fr; margin-top:18px; }.hero-actions .button { width:100%; }.scroll { display:none; }
+      .about-grid,.access-grid,.ticket-bottom { grid-template-columns:1fr; gap:35px; }.about::before { top:3%; right:-14%; width:62vw; height:62vw; }.about-text { order:-1; }.about-text p:not(.eyebrow) { margin-top:22px; font-size:16px; }.team-cross { gap:76px; width:calc(100% - 8px); margin-left:8px; transform:none; }.team-shot { width:78%; border-width:5px; }.team-cross-mark { width:68px; height:68px; }.team-cross-mark::before,.team-cross-mark::after { height:6px; margin-top:-3px; }
+      .cast-lead { margin:16px 0 0; font-size:16px; }.cast-photo { aspect-ratio:4/3; }.cast-details { grid-template-columns:1fr; gap:0; margin-top:38px; }.cast-category + .cast-category { margin-top:34px; }.cast-details > .cast-category { margin-top:34px; }.guest-names { gap:12px; }.guest-names span { font-size:24px; }.cast-list li,.program-list li { font-size:16px; }.program-list { gap:10px; }
+      .step { grid-template-columns:1fr; gap:10px; min-height:0; padding:28px 0; }.step::before { grid-row:auto; padding-top:0; }.step p { color:#536479; }.ticket-bottom { margin-top:26px; }.information ul { grid-template-columns:1fr; gap:11px; }.ticket-cta { margin-top:28px; }.ticket-cta .button { width:100%; }.support { grid-template-columns:1fr; gap:16px; margin-top:38px; padding:25px 0; }.support .button { width:100%; }.map { min-height:245px; }.faq-head { display:block; margin-bottom:30px; }.faq-head p { margin-top:18px; }.instagram { padding:72px 0 94px; }.mobile-cta { position:fixed; z-index:9; right:0; bottom:0; left:0; display:flex; gap:10px; padding:10px 22px; background:rgba(255,255,255,.96); box-shadow:0 -3px 15px rgba(0,0,0,.12); }.mobile-cta .button { flex:1; width:auto; min-height:48px; padding:14px 12px; }.mobile-cta__ig { display:flex; width:52px; min-height:48px; flex:none; align-items:center; justify-content:center; color:var(--ink); border:1px solid var(--ink); }.mobile-cta__ig .ig-icon { width:21px; height:21px; }body.menu-open .mobile-cta { display:none; }.notice { font-size:14px; }
+    }
+    /* 縦の短い端末では、ヒーローのボタンが下部の固定CTAに潜らないよう詰める */
+    @media (max-width:760px) and (max-height:790px) {
+      .hero-inner { padding:72px 0 60px; }
+      .hero-copy { margin-top:56px; }
+      .hero-copy h1 { margin-bottom:13px; }
+      .hero-data { padding:12px 0; gap:9px; }
+      .hero-actions { margin-top:16px; }
+    }
+    /* さらに短い端末（iPhone SE など）向け */
+    @media (max-width:760px) and (max-height:700px) {
+      .hero-inner { padding:62px 0 52px; }
+      .hero-copy { margin-top:32px; }
+      .hero-copy h1 { margin-bottom:11px; }
+      .hero-data { padding:11px 0; gap:8px; }
+      .hero-actions { margin-top:16px; gap:10px; }
+    }
+    /* 旧世代の小型端末（360×640 など） */
+    @media (max-width:760px) and (max-height:660px) {
+      .hero-inner { padding:56px 0 46px; }
+      .hero-copy { margin-top:26px; }
+      .hero-data { padding:11px 0; gap:8px; }
+    }
+    /* ───── 協賛企業の募集（NEWS & CONTACT の下）─────
+       濃い色のInstagramとフッターの間に、明るい面を1枚はさむ。 */
+    .section.sponsor { padding:96px 0; background:#f2f8fd; }
+    .sponsor-card { max-width:760px; margin:0 auto; padding:60px 40px; text-align:center; background:#fff; border:1px solid var(--line); }
+    .sponsor-card .eyebrow { margin-bottom:14px; }
+    .sponsor-title { font-size:clamp(26px,3.4vw,38px); }
+    .sponsor-lead { max-width:34em; margin:22px auto 30px; color:#4e5861; word-break:auto-phrase; text-wrap:pretty; }
+    .sponsor-mail { max-width:100%; gap:12px; font-size:16px; letter-spacing:.02em; overflow-wrap:anywhere; }
+    @media (hover:hover) { .sponsor-mail:hover { color:#fff; background:var(--ink); } }
+    @media (max-width:760px) {
+      .section.sponsor { padding:64px 0 72px; }
+      .sponsor-card { padding:42px 16px; }
+      .sponsor-title { font-size:26px; }
+      .sponsor-mail { width:100%; padding:12px; gap:8px; }
+    }
+    /* ハンバーガーメニュー最下部の協賛募集。リンクにはせず、メールアドレスを文字で載せるだけ */
+    .site-menu__sponsor { margin-top:26px; padding-top:18px; border-top:1px solid rgba(255,255,255,.3); text-align:center; }
+    .site-menu__sponsor p { margin:0; }
+    .site-menu__sponsor-title { font-size:16px; font-weight:700; }
+    .site-menu__sponsor-mail { margin-top:4px !important; color:#e7eef6; font-size:16px; letter-spacing:.02em; overflow-wrap:anywhere; user-select:text; }
+    @media (max-height:760px) { .site-menu__sponsor { margin-top:16px; padding-top:14px; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へスキップ</a>
+  <header>
+    <div class="wrap header-inner">
+      <a href="#top" aria-label="Shinko on Ice トップへ"><img class="header-logo" src="logo-transparent.webp" alt="Shinko on Ice"></a>
+      <div class="header-actions">
+        <nav aria-label="ページ内ナビゲーション"><a href="#about">ABOUT</a><a href="#program">CAST &amp; PROGRAM</a><a href="#ticket">TICKET</a><a href="#access">ACCESS</a><a href="#faq">FAQ</a><a class="button button--primary" href="https://camp-fire.jp/projects/990416/view?utm_id=97760_v0_s00_e0_tv3" target="_blank" rel="noopener">CAMPFIREで支援する<span class="sr-only">（新しいタブで開きます）</span></a></nav>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu"><span class="menu-toggle__label">MENU</span><span class="menu-toggle__icon" aria-hidden="true"><span></span><span></span><span></span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="menu-backdrop" hidden></div>
+  <nav class="site-menu" id="site-menu" aria-label="メニュー">
+    <p class="site-menu__label">MENU</p>
+    <ul>
+      <li><a href="#about">公演について</a></li>
+      <li><a href="#program">出演者・演目</a></li>
+      <li><a href="#ticket">来場・支援方法</a></li>
+      <li><a href="#access">会場・アクセス</a></li>
+      <li><a href="#faq">よくある質問</a></li>
+    </ul>
+    <a class="button button--primary" href="https://camp-fire.jp/projects/990416/view?utm_id=97760_v0_s00_e0_tv3" target="_blank" rel="noopener">CAMPFIREで支援する　<span class="arw">↗</span><span class="sr-only">（新しいタブで開きます）</span></a>
+    <p class="site-menu__note">お問い合わせ・最新情報は、<br>公式Instagramからご確認ください。</p>
+    <a class="site-menu__ig js-ig" href="https://www.instagram.com/shinkoonice.2026/" target="_blank" rel="noopener"><span class="ig-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/></svg></span>公式Instagram ↗<span class="sr-only">（新しいタブで開きます）</span></a>
+    <div class="site-menu__sponsor"><p class="site-menu__sponsor-title">協賛企業募集中</p><p class="site-menu__sponsor-mail">shinko.on.ice2026@gmail.com</p></div>
+  </nav>
+  <main id="main">
+    <section class="hero" id="top"><div class="snow" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="wrap hero-inner">
+        <div class="hero-logo-wrap"><span class="intro-line" aria-hidden="true"></span><span class="intro-spark" aria-hidden="true"></span><img class="hero-logo" src="logo-transparent.webp" alt="Shinko on Ice"><span class="hero-shine" aria-hidden="true"></span></div>
+        <div class="hero-copy">
+          <h1>甲南大学 × 神戸大学<br>Shinko on Ice</h1>
+          <div class="hero-data"><div><small>DATE</small><strong>2026.12.13（日）</strong></div><div><small>TIME</small><strong>17:15 開演 ／ 19:30 終演予定</strong></div><div><small>VENUE</small><strong>尼崎スポーツの森</strong></div></div>
+          <div class="hero-actions"><a class="button button--primary" href="https://camp-fire.jp/projects/990416/view?utm_id=97760_v0_s00_e0_tv3" target="_blank" rel="noopener">CAMPFIREで支援する <span class="arw">↗</span><span class="sr-only">（新しいタブで開きます）</span></a><a class="button button--light" href="#ticket">来場方法を見る <span class="arw arw--down">↓</span></a></div>
+        </div>
+      </div><div class="scroll">SCROLL</div>
+    </section>
+    <section class="section about" id="about"><div class="wrap about-grid"><div class="team-cross" aria-label="甲南大学と神戸大学の集合写真が交差する構成"><figure class="team-shot team-shot--konan"><img src="konan.webp" alt="甲南大学フィギュアスケート部の集合写真（仮）"><figcaption>甲南大学</figcaption></figure><figure class="team-shot team-shot--kobe"><img src="kobe.webp" alt="神戸大学フィギュアスケート部の集合写真（仮）"><figcaption>神戸大学</figcaption></figure><span class="team-cross-mark" aria-hidden="true">×</span></div><div class="about-text"><h2 class="title about-title">ふたつの大学で、<br>ひとつの氷を。</h2><p class="about-lead">甲南大学と神戸大学、ふたつのフィギュアスケート部がひとつの氷の上に立ちます。学生が企画し、構成し、滑る。<br>そんなアイスショーを12月の尼崎でお届けします。</p><p>この公演は、両大学の部員が中心となってつくりあげる合同アイスショーです。ゲストスケーターをお迎えし、現役生による演技やOB・OGとのコラボレーション、季節にあわせたクリスマスナンバーまで、幅広いプログラムをご用意しています。</p></div></div></section>
+    <section class="section program" id="program"><div class="wrap program-head"><p class="eyebrow">CAST &amp; PROGRAM</p><div><h2 class="title">出演者・演目</h2><p class="cast-lead">特別ゲストをお迎えし、甲南大学と神戸大学の現役生とともにお届けします。</p></div></div><div class="cast-photo cast-photo--bleed"><img src="cast.webp" alt="クリスマスの衣装を着た Shinko on Ice の出演者たち（仮）"></div><div class="wrap"><div class="cast-details"><div><section class="cast-category"><h3>SPECIAL GUEST</h3><div class="guest-names"><span>三原 舞依 さん</span><span>壷井 達也 さん</span></div></section><section class="cast-category"><h3>CAST</h3><ul class="cast-list"><li>甲南大学フィギュアスケート部</li><li>神戸大学フィギュアスケート部</li></ul></section></div><section class="cast-category"><h3>PROGRAM</h3><ul class="program-list"><li>ボーイズナンバー</li><li>ガールズナンバー</li><li>OB・OGコラボ</li><li>クリスマスナンバー</li></ul></section></div></div></section>
+    <section class="section ticket" id="ticket"><div class="wrap"><p class="eyebrow">HOW TO JOIN</p><h2 class="title">来場・支援方法</h2><p class="ticket-lead">観覧には、CAMPFIREのクラウドファンディングで招待券付きのリターンをお申し込みください。</p><div class="steps"><article class="step"><h3>CAMPFIREで招待券付き<br>リターンを選ぶ</h3><p>クラウドファンディングのページから、招待券が含まれるリターンをお選びください。</p></article><article class="step"><h3>観覧する人数分、<br>1口ずつ申し込む</h3><p>同じリターンを複数口お申し込みの場合は、1口ずつお手続きください。同じCAMPFIREアカウントで、人数分お申し込みいただけます。</p></article><article class="step"><h3>当日、受付でお名前と<br>支援IDの下4桁を提示する</h3><p>入場受付では、お申し込み時のお名前と支援IDの下4桁をご提示ください。<br>支援IDは、お申し込み完了時に届く確認メールでご確認いただけます。CAMPFIREに会員登録されている方は、ログイン後の「支援したプロジェクト」からもご確認いただけます。<br>返礼品も当日会場にてお渡しします。</p></article></div><div class="ticket-bottom"><div class="information"><h3>招待券について</h3><ul><li>招待券はお一人につき1枚必要です</li><li>3歳以下のお子さまは招待券なしでご入場いただけます</li><li>4歳以上のお子さまは、お一人につき1枚必要です</li></ul></div><div class="ticket-cta"><a class="button button--primary" id="campfire" href="https://camp-fire.jp/projects/990416/view?utm_id=97760_v0_s00_e0_tv3" target="_blank" rel="noopener">CAMPFIREで招待券付きリターンを見る　<span class="arw">↗</span><span class="sr-only">（新しいタブで開きます）</span></a></div><div class="support"><div><h3>会場に来られない方へ</h3><p>配送に対応したリターンもご用意しています。内容やお受け取り方法は、CAMPFIREの各リターンをご確認ください。</p></div><a class="button button--outline" href="https://camp-fire.jp/projects/990416/view?utm_id=97760_v0_s00_e0_tv3" target="_blank" rel="noopener">配送対応のリターンを見る　<span class="arw">↗</span><span class="sr-only">（新しいタブで開きます）</span></a></div></div></div></section>
+    <section class="section access" id="access"><div class="wrap access-grid"><div><p class="access-kicker">会場</p><h2 class="title access-title">尼崎スポーツの森</h2><div class="access-info"><p>兵庫県尼崎市扇町43</p><dl><div><dt>電車・バスでお越しの方</dt><dd>阪神電車「武庫川駅」・「尼崎センタープル前駅」からタクシーで約10分。<br>阪神電車「出屋敷駅」路線バス乗り場から「尼崎スポーツの森」行き阪神バスで約11分。</dd></div><div><dt>お車でお越しの方</dt><dd>駐車場がございます。</dd></div><div><dt>車椅子席について</dt><dd>車椅子席をご用意しています。<br>お申し込み方法やお席については、事前にお問い合わせください。</dd></div></dl></div></div><a class="map map--link" href="https://www.google.com/maps/search/?api=1&query=%E5%B0%BC%E5%B4%8E%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%84%E3%81%AE%E6%A3%AE%20%E5%85%B5%E5%BA%AB%E7%9C%8C%E5%B0%BC%E5%B4%8E%E5%B8%82%E6%89%87%E7%94%BA43" target="_blank" rel="noopener"><span>MAP<br><span class="map__sub">Googleマップで開く ↗</span><span class="sr-only">（新しいタブで開きます）</span></span></a></div></section>
+    <section class="section faq" id="faq"><div class="wrap"><div class="faq-head"><div><p class="eyebrow">FAQ</p><h2 class="title">よくある質問</h2></div><p>気になることを事前にご確認いただけます。<br>その他のお問い合わせは、公式InstagramのDMよりお願いいたします。</p></div><div><details open><summary>観覧するにはどうすればよいですか？</summary><div class="faq-body"><p>CAMPFIREのクラウドファンディングページから、招待券付きのリターンをお選びください。招待券はお一人につき1枚必要です。3歳以下のお子さまは招待券なしでご入場いただけます。</p></div></details><details><summary>2人以上で観覧する場合、まとめて申し込めますか？</summary><div class="faq-body"><p>同じリターンを複数口お申し込みの場合は、1口ずつお手続きください。同じCAMPFIREアカウントで、人数分お申し込みいただけます。</p></div></details><details><summary>子どもも観覧できますか？</summary><div class="faq-body"><p>はい、お子さまもご観覧いただけます。3歳以下のお子さまは入場無料です。4歳以上のお子さまは、お一人につき招待券1枚が必要です。</p></div></details><details><summary>当日の受付では何を提示すればよいですか？</summary><div class="faq-body"><p>入場受付では、お申し込み時のお名前と支援IDの下4桁をご提示ください。</p><p>支援IDは、お申し込み完了時に届く確認メールでご確認いただけます。CAMPFIREに会員登録されている方は、ログイン後の「支援したプロジェクト」からもご確認いただけます。</p></div></details><details><summary>会場に行けなくても支援できますか？</summary><div class="faq-body"><p>はい。配送に対応したリターンもご用意しています。内容やお受け取り方法は、CAMPFIREの各リターンをご確認ください。</p></div></details><details><summary>会場は寒いですか？</summary><div class="faq-body"><p>スケートリンクの観覧席は冷えやすいため、上着やひざ掛けなど、暖かくしてお越しください。</p></div></details><details><summary>公演中に写真や動画の撮影はできますか？</summary><div class="faq-body"><p>関係者を除き、公演中の写真・動画の撮影は原則としてご遠慮いただいております。ただし、一部の時間に限り、一般のお客様にも撮影をお楽しみいただける時間を設ける予定です。</p></div></details></div></div></section>
+    <section class="instagram"><div class="wrap"><p class="eyebrow" style="color:#f8c5d4">NEWS &amp; CONTACT</p><h2>最新情報は<br>公式Instagramで。</h2><p>出演者・演目の情報や当日のお知らせは、公式Instagramで発信します。お問い合わせもDMで受け付けています。</p><a class="button button--light js-ig" href="https://www.instagram.com/shinkoonice.2026/" target="_blank" rel="noopener"><span class="ig-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/></svg></span>Instagramを見に行く ↗<span class="sr-only">（新しいタブで開きます）</span></a></div></section>
+    <section class="section sponsor" id="sponsor"><div class="wrap"><div class="sponsor-card"><p class="eyebrow">FOR SPONSORS</p><h2 class="title sponsor-title">協賛企業募集中！</h2><p class="sponsor-lead">本公演をご支援いただける企業様を募集しております。<br>協賛メニューや詳細については、下記メールアドレスまでお問い合わせください。</p><a class="button button--outline sponsor-mail" href="mailto:shinko.on.ice2026@gmail.com"><span class="ig-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span>shinko.on.ice2026@gmail.com</a></div></div></section>
+  </main>
+  <footer><img src="logo-transparent.webp" alt="Shinko on Ice"><div class="footer-ig"><a class="js-ig" href="https://www.instagram.com/shinkoonice.2026/" target="_blank" rel="noopener"><span class="ig-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/></svg></span>公式Instagram ↗<span class="sr-only">（新しいタブで開きます）</span></a></div><div class="footer-host"><div class="footer-host__label">主催</div><div>甲南大学フィギュアスケート部</div><div>神戸大学フィギュアスケート部</div></div><div style="margin-top:12px">© 2026 Shinko on Ice</div></footer>
+  <div class="mobile-cta"><a class="button button--primary" href="https://camp-fire.jp/projects/990416/view?utm_id=97760_v0_s00_e0_tv3" target="_blank" rel="noopener">CAMPFIREで支援する　<span class="arw">↗</span><span class="sr-only">（新しいタブで開きます）</span></a><a class="mobile-cta__ig js-ig" href="https://www.instagram.com/shinkoonice.2026/" target="_blank" rel="noopener" aria-label="公式Instagram（新しいタブで開きます）"><span class="ig-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/></svg></span></a></div>
+  <script>
+    (() => {
+      // オープニング：2.7秒で終了。タップ・スクロール・キー操作ですぐ飛ばせる。
+      const root = document.documentElement;
+      if (root.classList.contains('intro')) {
+        const logo = document.querySelector('.hero-logo');
+        // ロゴの形で光をマスクするため、画像のURLをCSS変数に渡す
+        document.querySelector('.hero').style.setProperty('--logo-mask', `url("${logo.src}")`);
+        const events = ['pointerdown', 'wheel', 'touchmove', 'keydown'];
+        const endIntro = () => {
+          root.classList.remove('intro');
+          events.forEach((ev) => window.removeEventListener(ev, endIntro));
+        };
+        events.forEach((ev) => window.addEventListener(ev, endIntro, { passive: true }));
+        setTimeout(endIntro, 2700);
+      }
+
+      const toggle = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-menu');
+      const backdrop = document.querySelector('.menu-backdrop');
+      if (toggle && menu && backdrop) {
+        const setMenu = (open) => {
+          toggle.setAttribute('aria-expanded', String(open));
+          menu.classList.toggle('is-open', open);
+          backdrop.hidden = !open;
+          requestAnimationFrame(() => backdrop.classList.toggle('is-open', open));
+          document.body.classList.toggle('menu-open', open);
+        };
+        toggle.addEventListener('click', () => setMenu(toggle.getAttribute('aria-expanded') !== 'true'));
+        backdrop.addEventListener('click', () => setMenu(false));
+        menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenu(false)));
+        document.addEventListener('keydown', (event) => { if (event.key === 'Escape') setMenu(false); });
+        // スマホ：メニューを右へスワイプで閉じる（指に追従し、離したとき一定以上動いていたら閉じる）
+        let sx = 0, sy = 0, dx = 0, swiping = false;
+        menu.addEventListener('touchstart', (e) => {
+          const t = e.touches[0]; sx = t.clientX; sy = t.clientY; dx = 0; swiping = false;
+        }, { passive: true });
+        menu.addEventListener('touchmove', (e) => {
+          const t = e.touches[0]; const mx = t.clientX - sx; const my = t.clientY - sy;
+          if (!swiping && Math.abs(mx) > 10 && Math.abs(mx) > Math.abs(my)) swiping = true;
+          if (!swiping) return;
+          dx = Math.max(0, mx);
+          menu.style.transition = 'none';
+          menu.style.transform = `translateX(${dx}px)`;
+        }, { passive: true });
+        const endSwipe = () => {
+          if (!swiping) return;
+          swiping = false;
+          menu.style.transition = '';
+          menu.style.transform = '';
+          if (dx > 70) setMenu(false);
+          dx = 0;
+        };
+        menu.addEventListener('touchend', endSwipe);
+        menu.addEventListener('touchcancel', endSwipe);
+      }
+
+      // 公式InstagramのURL。ここを書き換えれば全導線に反映されます。
+      const INSTAGRAM_URL = 'https://www.instagram.com/shinkoonice.2026/';
+      document.querySelectorAll('.js-ig').forEach((link) => {
+        if (INSTAGRAM_URL) { link.href = INSTAGRAM_URL; return; }
+        link.href = '#';
+        link.removeAttribute('target');
+        link.removeAttribute('rel');
+        link.title = '公式InstagramのURLは決まり次第設定します';
+      });
+
+      const header = document.querySelector('header');
+      if (header) {
+        // 動きを減らす設定の人には、予期しないスライドを見せず常時表示のままにする
+        const allowAutoHide = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let lastY = window.scrollY;
+        // 現在読んでいるセクションのナビに下線を出す
+        const navLinks = [...document.querySelectorAll('header nav a[href^="#"]:not(.button)')];
+        const sections = navLinks.map((link) => document.querySelector(link.getAttribute('href')));
+        const updateCurrentNav = () => {
+          let current = -1;
+          sections.forEach((section, i) => {
+            if (section && section.getBoundingClientRect().top <= 160) current = i;
+          });
+          navLinks.forEach((link, i) => link.classList.toggle('is-current', i === current));
+        };
+        const updateHeader = () => {
+          const y = window.scrollY;
+          header.classList.toggle('is-stuck', y > 24);
+          updateCurrentNav();
+          if (allowAutoHide) {
+            const hide = y > lastY + 4 && y > 160 && !document.body.classList.contains('menu-open');
+            if (hide) header.classList.add('is-hidden');
+            else if (y < lastY - 4 || y <= 160) header.classList.remove('is-hidden');
+          }
+          lastY = y;
+        };
+        window.addEventListener('scroll', updateHeader, { passive: true });
+        updateHeader();
+      }
+
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (reduceMotion) return;
+      document.body.classList.add('motion-enabled');
+      const groups = [
+        '.about-text', '.program-head', '.cast-photo', '.cast-details',
+        '.ticket > .wrap > .eyebrow', '.ticket > .wrap > .title', '.ticket-lead', '.step',
+        '.ticket-bottom', '.access-grid', '.instagram .wrap', '.sponsor-card'
+      ];
+      const revealItems = document.querySelectorAll(groups.join(','));
+      revealItems.forEach((element, index) => {
+        element.classList.add('reveal');
+        element.style.setProperty('--reveal-delay', `${Math.min(index % 5, 4) * 75}ms`);
+      });
+      // 手順と質問は、並び順にそって少しずつ遅らせる
+      [['.step', 110]].forEach(([selector, gap]) => {
+        document.querySelectorAll(selector).forEach((element, i) => {
+          element.style.setProperty('--reveal-delay', `${i * gap}ms`);
+        });
+      });
+      const observed = [...revealItems, ...document.querySelectorAll('.team-cross')];
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(({ target, isIntersecting }) => {
+          if (!isIntersecting) return;
+          target.classList.add('is-visible');
+          observer.unobserve(target);
+        });
+      }, { threshold: .16, rootMargin: '0px 0px -7% 0px' });
+      observed.forEach((element) => observer.observe(element));
+    })();
+  </script>
+</body>
+</html>
